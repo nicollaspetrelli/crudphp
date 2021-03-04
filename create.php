@@ -10,22 +10,22 @@
 
             <form action="/actions/create.php" method="post" id="createForm">
                 <div class="mb-3">
-                    <label for="nome">Nome</label>
+                    <label for="nome" class="form-label">Nome</label>
                     <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome" required minlength="3" maxlength="15">
                 </div>
 
                 <div class="mb-3">
-                    <label for="sobrenome">Sobrenome</label>
+                    <label for="sobrenome" class="form-label">Sobrenome</label>
                     <input type="text" class="form-control" name="sobrenome" id="sobrenome" placeholder="Sobrenome" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="contato">Contato</label>
+                    <label for="contato" class="form-label">Contato</label>
                     <input type="text" class="form-control" name="contato" id="contato" placeholder="Contato" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="datanasc">Data de Nascimento</label>
+                    <label for="datanasc" class="form-label">Data de Nascimento</label>
                     <input type="date" class="form-control" name="datanasc" id="datanasc" placeholder="dd/mm/yyyy" required>
                 </div>
 
@@ -33,6 +33,19 @@
                     <input type="checkbox" class="form-check-input" id="status" name="status" value="1" checked>
                     <label class="form-check-label" for="status">Esse usuário está ativo?</label>
                 </div>
+
+                <div id="loginForm">
+                    <hr>
+                    <div class="mb-3">
+                        <label for="login" class="form-label">Login</label>
+                        <input type="text" class="form-control" name="login" id="login" placeholder="Login" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pass" class="form-label">Senha</label>
+                        <input type="password" class="form-control" name="password" id="pass" placeholder="Senha" required>
+                    </div>
+                </div>
+
             </form>
 
         </div>

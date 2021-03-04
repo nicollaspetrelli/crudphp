@@ -6,6 +6,8 @@ require_once 'connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+    $disconnect = false;
+
     $data = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
     // Verificação
@@ -20,13 +22,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (!$status == 1) {
         $status = 0;
+        $disconnect = true;
     }
 
-    $sql = "UPDATE usuarios SET nome = '$nome', sobrenome = '$sobrenome', contato = '$contato', datanasc = '$datanasc', status = '$status' WHERE id = '$id'";
+    if($login == 'NULL' && $password == 'NULL') {
+
+        $sql = "UPDATE usuarios SET nome = '$nome', sobrenome = '$sobrenome', contato = '$contato', datanasc = '$datanasc', 
+                status = '$status', login = 'NULL', password = 'NULL' WHERE id = '$id'";
+
+    } else {
+
+        $pass = md5($password);
+
+        $sql = "UPDATE usuarios SET nome = '$nome', sobrenome = '$sobrenome', contato = '$contato', datanasc = '$datanasc', 
+                status = '$status', login = '$login', password = '$pass' WHERE id = '$id'";
+
+    }
 
     if($conn->query($sql) === TRUE) {
         $_SESSION['alert'] = "Usuario atualizado com sucesso!";
+
+        if ($disconnect) {
+            header('Location: /../auth/logout.php');
+            exit();
+        }
     } else {
+        $conn->close();
         die("SQL: $sql Erro: $conn->connect_error");
     }
 

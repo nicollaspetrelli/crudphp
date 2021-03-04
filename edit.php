@@ -60,6 +60,18 @@
                     <input type="checkbox" class="form-check-input" id="status" name="status" value="1" <?php echo $dataEdit['status'] ? 'checked' : '' ?>>
                     <label class="form-check-label" for="status">Esse usuário está ativo?</label>
                 </div>
+
+                <div id="loginForm">
+                    <hr>
+                    <div class="mb-3">
+                        <label for="login" class="form-label">Login</label>
+                        <input type="text" class="form-control" name="login" id="login" placeholder="Login" required value="<?= $dataEdit['login'] ?>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="pass" class="form-label">Senha</label>
+                        <input type="password" class="form-control" name="password" id="pass" placeholder="Senha" required">
+                    </div>
+                </div>
             </form>
 
         </div>

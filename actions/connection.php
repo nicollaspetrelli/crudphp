@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // Criar a conexão
 $localhost = "127.0.0.1";

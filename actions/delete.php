@@ -19,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
         die('Você está tentando remover um usuario que não existe!');
     }
-    
 }
 
 return header('Location: /index.php');

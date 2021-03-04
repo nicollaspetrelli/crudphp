@@ -2,6 +2,8 @@
 
 session_start();
 
+require_once 'auth/verify.php';
+
 /**
 *  @object MySQLI Connection Instance
 */
@@ -26,22 +28,7 @@ $data = mysqli_fetch_all($result,MYSQLI_ASSOC);
 </head>
 	<body>
 
-	<header class="mb-5">
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<div class="container-fluid">
-				<a class="navbar-brand" href="#"><strong>Nicollas CRUD PHP</strong></a>
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
-				<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-					<div class="navbar-nav">
-						<a class="nav-link active" aria-current="page" href="#">Usuarios</a>
-						<a class="nav-link" href="#">Detalhes da Conexão</a>
-					</div>
-				</div>
-			</div>
-		</nav>
-	</header>
+	<?php require_once 'layouts/header.php';?>
 
 	<main>
 		<div class="container">
@@ -134,9 +121,21 @@ $data = mysqli_fetch_all($result,MYSQLI_ASSOC);
 		</div>
 	</main>
 
-	<?php require 'create.php'?>
+
+	<?php
+		if(!isset($_GET['edit'])){
+			require 'create.php';
+		}
+	?>
+
 	<?php require 'show.php'?>
-	<?php require 'edit.php'?>
+
+	<?php
+		if(isset($_GET['edit'])){
+			require 'edit.php';
+		}
+	?>
+
 	<?php require 'delete.php'?>
 
 	<footer>
@@ -174,6 +173,21 @@ $data = mysqli_fetch_all($result,MYSQLI_ASSOC);
 			// $('.closeModal').click(function (e) { 
 			// 	window.location.href = "/index.php";
 			// });
+
+
+			$("#status").click(function() {
+				ckb = $("#status").is(':checked');
+
+				if(ckb){
+					$("#loginForm").show();
+						$("#login").val('');
+						$("#pass").val('');
+				} else {
+					$("#loginForm").hide();
+						$("#login").val('NULL');
+						$("#pass").val('NULL');
+				}
+			});
 
 		});
 	</script>

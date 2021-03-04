@@ -22,8 +22,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $status = 0;
     }
 
-    $sql = "INSERT INTO usuarios (nome, sobrenome, contato, datanasc, status) 
-            VALUES ('$nome', '$sobrenome', '$contato', '$datanasc', $status)";
+    if(!isset($login) && !isset($password)) {
+
+        $sql = "INSERT INTO usuarios (nome, sobrenome, contato, datanasc, status) 
+        VALUES ('$nome', '$sobrenome', '$contato', '$datanasc', $status)";
+
+    } else {
+
+        $pass = md5($password);
+
+        $sql = "INSERT INTO usuarios (nome, sobrenome, contato, datanasc, status, login, password) 
+        VALUES ('$nome', '$sobrenome', '$contato', '$datanasc', $status, '$login', '$pass')";
+
+    }
 
     if($conn->query($sql) === TRUE) {
         $_SESSION['alert'] = "Usuario criado com sucesso!";
